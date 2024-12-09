@@ -846,6 +846,10 @@ p {
     color: #81afdd;
   }
 
+  .future_here_new .left_container_future .img_vision{
+    width: 100%;
+  }
+
   .early_access .fon_gradient {
     width: 100%;
     background: linear-gradient(90deg, #ae67fa 1.84%, #f49867 102.67%);
