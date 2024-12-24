@@ -28,10 +28,7 @@
 
 body {
   background: #040c18;
-  overflow: auto;
-  margin: 0;
-  padding: 0 2rem;
-
+  padding: 0 2rem 8rem 2rem;
 }
 
 .page {
@@ -146,7 +143,7 @@ p {
 }
 
 .section {
-  max-width: 1440px;
+  max-width: 1169px;
   width: 100%;
 }
 
@@ -158,6 +155,7 @@ p {
 /* Стили для Шапки */
 
 .header {
+  z-index: 1;
   display: flex;
   max-width: 1169px;
   margin: 0 auto;
@@ -177,6 +175,31 @@ p {
   display: flex;
   column-gap: 2rem;
 }
+
+
+
+
+
+
+
+.header .burger_menu{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.header .burger_menu .burger_menu_line{
+  width: 25px;
+  height: 5px;
+  background-color: #ff4820;
+  transition: all 0.3s ease;
+}
+
+
+
+
+
 
 .header .header__menu .menu .menu__item a {
   color: #fff;
@@ -384,11 +407,7 @@ p {
 }
 /* Медиа запросы для адаптива */
 
-@media screen and (max-width: 1024px) {
-  .header {
-    flex-direction: column;
-  }
-}
+
 
 /* Будущее наступило новое */
 
@@ -468,7 +487,7 @@ p {
 }
 
 .early_access .fon_gradient .right_gradient {
-  /* width: 40%; */
+  width: 40%;
   display: flex;
   padding: 4rem 2rem 4rem 15rem;
 }
@@ -507,6 +526,17 @@ p {
   display: flex;
   flex-direction: column;
   flex: 2;
+  min-width: 375px;
+}
+
+.Blog .Blog_Bottom .Blog_Left .text_left_back .text_left3 .dataset_left
+{
+  font-size: 12px;
+}
+
+.Blog .Blog_Bottom .Blog_Right .read_right
+{
+  font-size: 12px;
 }
 
 .Blog .Blog_Bottom .Blog_Left .blog_left_img{
@@ -520,7 +550,7 @@ p {
 }
 
 .Blog .Blog_Bottom .Blog_Left .text_left_back .text_left2{
-  padding-bottom: 11rem;
+  padding-bottom: 15rem;
 }
 
 .Blog .Blog_Bottom .Blog_Right{
@@ -566,12 +596,15 @@ p {
 }
 
 .Last .Last_Button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   padding: 0 32rem 11rem 32rem;
   /* border: 2px solid #fff; */
+}
+
+.Last .Last_End .Right_End .column .last_iteam
+{
+  font-family: "ManropeLight", sans-serif;
+  font-size: 12px;
+  color: #fff;
 }
 
 .Last .Last_Button .Last_Button1{
@@ -580,13 +613,6 @@ p {
   align-items: center;
   border: 2px solid #fff;
   padding: 1.25rem;
-  text-align: center;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #fff;
-  padding: 1.25rem; */
-
 }
 
 .Last .Last_End{
@@ -625,9 +651,52 @@ p {
 }
 
 @media screen and (max-width: 1024px) {
-  .header{
-    gap: 1rem;
+  .header {
+    flex-direction: column;
   }
+}
+
+@media screen and (max-width: 1024px) {
+  /* .header{
+    gap: 1rem;
+  } */
+
+  .header .header__menu{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .header .burger_menu{
+    display: flex;
+  }
+
+  .header .header__menu.active{
+    display: flex;
+  }
+
+  .burger_menu.open .burger_menu_line:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .burger_menu.open .burger_menu_line:nth-child(2){
+    opacity: 0;
+  }
+
+  .burger_menu.open .burger_menu_line:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .header .cta_buttons {
+    display: none;
+}
 
   .Last .Last_End{
     display: flex;
