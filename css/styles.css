@@ -27,8 +27,13 @@
 /* Общие стили для всего приложения */
 
 body {
-  background: #040c18;
-  padding: 0 2rem 8rem 2rem;
+  background: #031b34;
+  padding: 0 2rem;
+  overflow: auto;
+}
+
+body.oh {
+  overflow: hidden;
 }
 
 .page {
@@ -148,7 +153,7 @@ p {
 }
 
 .lined_header {
-  background: url("../images/gradient_line.svg") no-repeat 0 0 transparent;
+  background: url("../assets/img/gradient_line.svg") no-repeat 0 0 transparent;
   padding: 1rem 0;
 }
 
@@ -167,8 +172,9 @@ p {
   background: #031b34;
 }
 
-.header .header-logo {
-  width: 162px;
+.header .header__logo .logo__link {
+  display: flex;
+  align-items: center;
 }
 
 .header .header__menu .menu {
@@ -176,30 +182,38 @@ p {
   column-gap: 2rem;
 }
 
-
-
-
-
-
-
-.header .burger_menu{
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.header .burger_menu .burger_menu_line{
-  width: 25px;
-  height: 5px;
-  background-color: #ff4820;
+.header .header__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 2rem;
+  opacity: 1;
+  visibility: visible;
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }
 
+.header .header__right.hidden {
+  opacity: 0;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  visibility: hidden;
+}
 
+.header .header__right .menu__close {
+  width: 38px;
+  height: 38px;
+}
 
-
-
+.header .header__right .menu__close.hidden {
+  display: none;
+}
 
 .header .header__menu .menu .menu__item a {
   color: #fff;
@@ -215,6 +229,47 @@ p {
   border-bottom-color: #f49867;
 }
 
+.header .header__burger_menu {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  cursor: pointer;
+}
+
+.header .header__burger_menu.hidden {
+  display: none;
+}
+
+.header .header__burger_menu .burger_menu__line,
+.header .header__right .menu__close .menu__line {
+  width: 43px;
+  height: 5px;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.header .header__right .menu__close .menu__line:nth-child(1) {
+  position: relative;
+  top: 15px;
+  right: 4px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.header .header__right .menu__close .menu__line:nth-child(2) {
+  position: relative;
+  top: 10px;
+  right: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
 .header .cta_buttons {
   display: flex;
   column-gap: 1rem;
@@ -226,7 +281,7 @@ p {
   display: flex;
   justify-content: space-between;
   column-gap: 1rem;
-  min-height: 60vh;
+  /* min-height: 60vh; */
   margin: 14rem 0 3rem;
 }
 
@@ -274,6 +329,8 @@ p {
 
 .brands_section {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
   justify-content: center;
   align-items: center;
   padding: 0 0 6rem 0;
@@ -288,11 +345,12 @@ p {
   padding: 3rem;
   margin: 6rem 0;
   row-gap: 7rem;
-  background: url(../images/what_is_gpt_3_bg.svg) no-repeat 0 0 / cover;
+  background: url(../assets/img/what_is_gpt_3_bg.svg) no-repeat 0 0 / cover;
 }
 
 .what_is_chatgpt_section .what_is_chatgpt_section__top {
   display: flex;
+  column-gap: 3rem;
 }
 
 .what_is_chatgpt_section .what_is_chatgpt_section__top .top__header {
@@ -357,7 +415,7 @@ p {
 .future_here {
   display: flex;
   column-gap: 6rem;
-  margin: 6rem 0 3rem;
+  margin: 6rem 0 2rem;
 }
 
 .future_here .future_here__left {
@@ -405,9 +463,6 @@ p {
   width: 55%;
   color: #81afdd;
 }
-/* Медиа запросы для адаптива */
-
-
 
 /* Будущее наступило новое */
 
@@ -650,260 +705,293 @@ p {
   line-height: 1.4; /* Расстояние между строками внутри элементов */
 }
 
+
+/* Медиа запросы для адаптива */
+
 @media screen and (max-width: 1024px) {
+  .page {
+    align-content: center;
+  }
+
   .header {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  /* .header{
-    gap: 1rem;
-  } */
-
-  .header .header__menu{
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    padding: 2rem 7rem;
   }
 
-  .header .burger_menu{
-    display: flex;
+  .header .header__logo .logo__link img {
+    width: 200%;
   }
 
-  .header .header__menu.active{
-    display: flex;
-  }
-
-  .burger_menu.open .burger_menu_line:nth-child(1){
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .burger_menu.open .burger_menu_line:nth-child(2){
-    opacity: 0;
-  }
-
-  .burger_menu.open .burger_menu_line:nth-child(3){
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  .header .cta_buttons {
-    display: none;
-}
-
-  .Last .Last_End{
-    display: flex;
-    width: 100%;
-    padding: 0 8.5rem 5rem 6.6rem;
-    gap: 13rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .hero_section {
-    display: flex;
-    flex-direction: column; /* Элементы располагаются один за другим */
-    align-items: center; /* Выравниваем по центру горизонтально */
-    justify-content: center; /* Выравниваем по центру вертикально */
-    row-gap: 1rem; /* Расстояние между элементами */
-    min-height: 60vh;
-    margin: 14rem 0 3rem;
-    text-align: center; /* Для центрирования текста */
-  }
-  
-  .hero_section .hero_section__left {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрируем контент внутри */
-    justify-content: center;
-    row-gap: 1rem; /* Уменьшено для компактности */
-    width: 100%; /* Занимает всю ширину */
-  }
-  
-  .hero_section .hero_section__left .left__cta_buttons {
-    display: flex;
-    justify-content: center; /* Центрируем кнопки */
-    align-items: center; /* Выравниваем вертикально */
-    width: 100%;
-  }
-  
-  .hero_section .hero_section__left .left__cta_buttons input[type="text"] {
-    min-width: 250px;
-    width: 70%;
-    padding: 8px 32px;
-    border-radius: 4px 0 0 4px;
-    border: 1px solid #052d56;
-    border-bottom: none;
-    background-color: #052d56;
-  }
-  
-  .hero_section .hero_section__right {
-    width: 100%; /* Занимает всю ширину секции */
-    text-align: center; /* Центрируем текст */
-  }
-  
-  .hero_section .hero_section__right img {
-    max-width: 100%; /* Устанавливаем максимальную ширину */
-    height: auto; /* Сохраняем пропорции изображения */
-  }
-  
-  .future_here {
-    flex-direction: column;
-    display: flex;
-    column-gap: 6rem;
-    margin: 6rem 0 3rem;
-  }
-
-  .future_here .future_here__left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 2rem;
-    flex: 2;
-    margin-bottom: 2rem;
-  }
-
-  .future_here_new {
-    flex-direction: column; /* Элементы располагаются в колонку */
-    margin: 0 0 5rem; /* Сокращаем внешний отступ */
-  }
-
-  .future_here_new .left_container_future {
-    width: 100%; /* Картинка занимает всю ширину */
-    padding: 0; /* Убираем отступы */
-    margin-bottom: 2rem; /* Отступ снизу */
-  }
-
-  .future_here_new .right_container_future {
-    width: 100%; /* Текст занимает всю ширину */
-    padding: 0 1rem; /* Компактный внутренний отступ */
-  }
-
-  .future_here_new .right_container_future .time-dostup,
-  .future_here_new .right_container_future .right_future_here,
-  .future_here_new .right_container_future .new_future_description {
-    margin-bottom: 1rem; /* Унифицированный отступ между текстами */
-  }
-
-  .early_access .fon_gradient .right_gradient {
+  .header .header__right {
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    padding: 4rem 2rem 4rem 4rem;
+    row-gap: 53px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background: #031b34;
   }
-  
-  .what_is_chatgpt_section .what_is_chatgpt_section__top {
+
+  .header .header__menu {
     display: flex;
-    gap: 5rem;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .header .header__menu .menu {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+  }
+
+  .header .header__menu .menu__close {
+    position: absolute;
+    right: -100px;
+    top: -100px;
+  }
+
+  .header .header__menu .menu .menu__item a {
+    font-size: 48px;
+  }
+
+  .hero_section {
+    flex-direction: column;
+    justify-content: center;
+    column-gap: 0;
+    /* margin: 0; */
+    width: 90%;
+  }
+
+  .hero_section .hero_section__left {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero_section .hero_section__right {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero_section .hero_section__right img {
+    width: 60%;
+  }
+
+  .hero_section .hero_section__left .left__cta_buttons {
+    justify-content: center;
+  }
+
+  .what_is_chatgpt_section {
+    row-gap: 4rem;
+  }
+
+  .what_is_chatgpt_section .what_is_chatgpt_section__middle {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .what_is_chatgpt_section .what_is_chatgpt_section__bottom .bottom__container {
+    row-gap: 0;
   }
 
   .Blog .Head_Text {
     font-size: 62px;
     width: 100%;
-    padding: 0 5rem 3rem 5rem;
+    padding: 0 10rem 3rem 10rem;
+}
+
+  .future_here {
+    column-gap: 0;
+    flex-direction: column;
+    row-gap: 4rem;
+  }
+
+  .future_here .future_here__left {
+    row-gap: 1rem;
+  }
+
+  .early_access .fon_gradient .right_gradient {
+    width: 40%;
+    display: flex;
+    padding: 4rem 1rem 4rem 11rem;
   }
 
   .Last .Last_Head {
-    padding: 11rem 10rem 4rem 10rem;
+    padding: 5rem 10rem 4rem 10rem;
   }
 
   .Last .Last_Button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 1rem 8rem 7rem 8rem;
+    padding: 0px 20rem 8rem 20rem;
   }
 
   .Last .Last_End {
     display: flex;
     width: 100%;
-    padding: 0 1.5rem 5rem 1.5rem;
-    gap: 4rem;
-  }
-
-  .Last .Last_End .Right_End {
-    display: flex;
-    flex: 4;
-    gap: 3rem;
+    padding: 0px 2rem 5rem 2rem;
+    gap: 15rem;
   }
 }
 
-@media screen and (max-width: 430px){
-  h1{
-    font-size: 35px;
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  h1 {
+    font-size: 46px;
   }
 
-  h2{
-    font-size: 30px;
+  h2 {
+    font-size: 27px;
   }
 
-  p{
-    font-size: 12px;
+  h3 {
+    font-size: 19px;
   }
 
-  .hero_section .hero_section__left .left__cta_buttons input[type="text"] {
-    min-width: 180px;
-    width: 70%;
-    padding: 17px 32px;
-    border-radius: 4px 0 0 4px;
-    border: 1px solid #052d56;
-    border-bottom: none;
-    background-color: #052d56;
+  .hero_section {
+    width: 100%;
   }
 
   .brands_section {
-    display: flex;
-    grid-gap: 1rem;
-    row-gap: 1rem;
-    column-gap: 1rem;
-    flex-direction: column;
-    padding: 0 0 6rem 0;
-  }
-
-  .what_is_chatgpt_section {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    margin: 6rem 0;
-    row-gap: 4rem;
-    background: url(../images/what_is_gpt_3_bg.svg) no-repeat 0 0 / cover;
-  }
-
-  .what_is_chatgpt_section .what_is_chatgpt_section__middle {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .what_is_chatgpt_section .what_is_chatgpt_section__middle .middle__header {
-    width: 280px;
-  }
-
-  .what_is_chatgpt_section .what_is_chatgpt_section__bottom {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
+    margin-top: -15px;
+    padding-bottom: 0;
   }
 
   .what_is_chatgpt_section .what_is_chatgpt_section__top {
+    flex-direction: column;
+  }
+
+  .hero_section .hero_section__right img {
+    width: 85%;
+  }
+
+  .what_is_chatgpt_section .what_is_chatgpt_section__middle .middle__header {
+    width: auto;
+  }
+
+  .what_is_chatgpt_section .what_is_chatgpt_section__bottom {
+    flex-direction: column;
+  }
+
+  .what_is_chatgpt_section .what_is_chatgpt_section__bottom {
+    row-gap: 2rem;
+  }
+
+  .what_is_chatgpt_section {
+    row-gap: 3rem;
+  }
+
+  .what_is_chatgpt_section {
+    margin: 6rem 0 0;
+  }
+
+  .what_is_chatgpt_section
+    .what_is_chatgpt_section__bottom
+    .bottom__container
+    .container__content {
+    line-height: 1.5;
+  }
+
+  .future_here_new {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 3rem;
+  }
+
+  .future_here_new .left_container_future {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 2rem 0;
+  }
+
+  .future_here_new .right_container_future {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3rem 1rem 2rem;
+  }
+  
+  .early_access {
+    display: flex;
+    margin-bottom: 5rem;
+  }
+
+  .early_access .fon_gradient .right_gradient {
+    width: 40%;
+    display: flex;
+    padding: 4rem 1rem 4rem 5rem;
+  }
+
+  .Blog {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .Blog .Head_Text {
+    font-size: 62px;
+    width: 100%;
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  .Blog .Blog_Bottom .Blog_Left .text_left_back .text_left2 {
+    padding-bottom: 3rem;
+  }
+
+  .Blog .Blog_Bottom{
+    flex-direction: column;
+  }
+
+  .Last .Last_Head {
+    padding: 4rem 0rem 4rem 0rem;
+  }
+
+  .Last .Last_Button {
+    padding: 0px 14rem 4rem 14rem;
+  }
+
+  .Last .Last_End {
+    display: flex;
+    width: 100%;
+    padding: 0px 2rem 5rem 2rem;
+    gap: 8rem;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  a {
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h2 {
+    font-size: 19px;
+  }
+
+  .hero_section .hero_section__left .left__cta_buttons input[type="text"] {
+    min-width: auto;
+  }
+
+  .future_here {
+    row-gap: 3rem;
   }
 
   .future_here .future_here__right .right__container {
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
   }
 
   .future_here .future_here__right .right__container .container__header {
@@ -912,81 +1000,94 @@ p {
 
   .future_here .future_here__right .right__container .container__content {
     width: 100%;
-    color: #81afdd;
+  }
+
+  .future_here .future_here__right {
+    row-gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 426px){
+  .header {
+    padding: 2rem 2rem;
+  }
+
+  .future_here_new .left_container_future {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0px 0rem 0;
   }
 
   .future_here_new .left_container_future .img_vision{
     width: 100%;
   }
 
+  .Blog .Head_Text {
+    font-size: 62px;
+    width: 100%;
+    padding: 0px 0rem 2rem 0rem;
+  }
+
   .early_access .fon_gradient {
     width: 100%;
+    flex-direction: column;
     background: linear-gradient(90deg, #ae67fa 1.84%, #f49867 102.67%);
     display: flex;
-    flex-direction: column;
     border-radius: 10px;
   }
 
   .early_access .fon_gradient .left_gradient {
     width: 100%;
     display: flex;
-    text-align: center;
     flex-direction: column;
-    padding: 15px;
-    gap: 1rem;
-  }
-
-  .early_access .fon_gradient .left_gradient .osn_text {
-    font-size: 22px;
+    padding: 25px;
   }
 
   .early_access .fon_gradient .right_gradient {
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 2rem 2rem 2rem;
-  }
-
-  .Blog .Head_Text {
-    font-size: 62px;
     width: 100%;
-    text-align: center;
-    padding: 0 0rem 3rem 0rem;
+    display: flex;
+    padding: 1rem 0rem 1rem 0rem;
+    justify-content: center;
   }
 
-  .Blog .Blog_Bottom {
+  .Blog .Blog_Bottom .Blog_Right {
     display: flex;
+    min-width: 375px;
     flex-direction: column;
     gap: 3rem;
   }
 
-  .Blog .Blog_Bottom .Blog_Left .text_left_back .text_left2 {
-    padding-bottom: 3rem;
-  }
-
-  .Blog .Blog_Bottom .Blog_Right {
-    flex: 4;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .Last .Last_Head {
-    padding: 5rem 0rem 4rem 0rem;
+  .Last .Last_Button {
+    padding: 0px 4rem 4rem 4rem;
   }
 
   .Last .Last_End {
     display: flex;
-    text-align: center;
-    flex-direction: column;
     width: 100%;
-    padding: 0 1.5rem 5rem 1.5rem;
+    flex-direction: column;
+    padding: 0px 2rem 5rem 2rem;
     gap: 4rem;
+    align-items: center;
   }
 
   .Last .Last_End .Right_End {
     display: flex;
-    flex-direction: column;
     flex: 4;
-    gap: 3rem;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .Last .Last_End .column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .Last .Last_End .column h7 {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    text-align: center;
   }
 }
